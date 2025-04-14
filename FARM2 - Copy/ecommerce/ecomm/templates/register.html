@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+   Register
+{% endblock  %}
+
+{% block content %}
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Quality Farming Equipments</p>
+                    <h1>Register</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container px-4 px-lg-5 my-5">
+    
+  <form method="POST" action="{% url 'register'%}">
+    {% csrf_token %}
+    <div class="container mt-4 mb-5">
+      <center>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-danger">Register</button>
+     </form>
+  
+      </center>
+  </div>
+</div>
+    
+{% endblock  %}

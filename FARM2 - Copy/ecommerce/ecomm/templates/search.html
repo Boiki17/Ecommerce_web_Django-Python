@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Search {% endblock  %}
+
+{% block content %}
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Quality Farming Equipments</p>
+                    <h1>Searched Products</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+  {% if searched %}
+   {% for product in searched %}
+    {%if product.is_sale %}
+    <div class="col-lg-4 col-md-6 text-center">
+        <div class="single-product-item">
+            <div class="product-image">
+                <a href="{% url 'product' product.id %}"><img src="{{product.image.url}}" alt=""></a>
+            </div>
+            <h3>{{product.productName}}</h3>
+            <strike><p class="product-price"> R{{product.price}} </p> </strike>
+            
+            <p class="product-price">R{{product.sale_price}}  </p>
+            <a href="{% url 'product' product.id %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+        </div>
+    </div>
+        {% else %}
+      
+        
+        <div class="col-lg-4 col-md-6 text-center">
+            <div class="single-product-item">
+                <div class="product-image">
+                    <a href="{% url 'product' product.id %}"><img src="{{product.image.url}}" class="h-100" alt=""></a>
+                </div>
+                <h3>{{product.productName}}</h3>
+                <p class="product-price"> R{{product.price}} </p> 
+                
+                <a  class="cart-btn"><i class="fas fa-shopping-cart" value="{{product.id}}" id="add-cart"></i> Add to Cart</a>
+            </div>
+        </div>
+         {% endif %}
+   {% endfor %}
+    </div>
+    </div>
+  {% endif %}
+{% endblock  %}
